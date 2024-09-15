@@ -1,5 +1,3 @@
-import React from "react";
-
 export interface ChipProps {
   text: string;
   status: "warning" | "success" | "danger" | "";

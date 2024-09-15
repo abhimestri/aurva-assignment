@@ -24,6 +24,7 @@ import MealsDetailsSideBar from "./SideBar/MealsDetailsSideBar";
 import { MealDetailsContext } from "./context";
 import CustomNode from "./components/CustomNode";
 import { Toaster } from "react-hot-toast";
+import { MealDetailProps } from "./helpers";
 
 export const parentOffSetPostionValues = {
   x: 50,
@@ -37,7 +38,7 @@ const nodeTypes = {
 const App = () => {
   const [nodes, setNodes] = useState<Array<Node>>(initialNodes);
   const [edges, setEdges] = useState<Array<Edge>>(initialEdges);
-  const [mealDetails, setMealDetails] = useState<any>({});
+  const [mealDetails, setMealDetails] = useState<MealDetailProps>();
   const [openMealDetailsSidebar, setOpenMealDetailSidebar] =
     useState<boolean>(false);
   const [categoryList, setCategoryList] = useState<any>([]);
