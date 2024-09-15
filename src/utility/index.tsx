@@ -85,7 +85,10 @@ export const getUpdatedSingleNode = ({
     id: `categoryview-${node?.id}-${uniqueId}`,
     data: {
       label: "View Meals",
-      payload: { ...node?.data?.payload, index: nodes?.length + 1 },
+      payload: {
+        ...node?.data?.payload,
+        index: node?.data?.payload?.index + 1,
+      },
       type: "intermediate",
     },
     type: "custom",
