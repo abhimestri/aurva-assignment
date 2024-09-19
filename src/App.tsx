@@ -146,11 +146,13 @@ const App = () => {
       }}
     >
       <select onChange={handleSelectCountry}>
-        <option>Indian</option>
-        <option>Canadian</option>
-        <option>Italian</option>
-        <option>Japanese</option>
-        <option>Chinese</option>
+        <option value="Indian" selected>
+          Indian
+        </option>
+        <option value="Canadian">Canadian</option>
+        <option value="Italian">Italian</option>
+        <option value="Japanese">Japanese</option>
+        <option value="Chinese">Chinese</option>
       </select>
       <div className="w-full h-[100vh]">
         <MealsDetailsSideBar
