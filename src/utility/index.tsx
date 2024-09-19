@@ -39,16 +39,16 @@ export const getUpdatedNodeList = ({
     ?.slice(0, 5)
     .map((data: any, i: any) => {
       const yOffset = i * 80;
-      const nodeId = `category-${data?.idCategory}`;
+      const nodeId = `categoryitems-${data?.idMeal}`;
       return {
         ...getBaseNodeAttributes({
           source: "explore-parent",
           position: { x: 350, y: parentOffSetPostionValues?.y + yOffset },
           id: nodeId,
           data: {
-            label: data?.strCategory,
+            label: data?.strMeal,
             payload: {
-              category: data?.strCategory,
+              category: data?.strMeal,
               /* this index will keep track of previous node
               so that when user clicks a parent node, the succeding children 
               nodes and edges can be removed  */
@@ -62,9 +62,9 @@ export const getUpdatedNodeList = ({
   const updatedEdgeList: Array<Edge> = items
     ?.slice(0, 5)
     .map((data: any, i: any) => {
-      const nodeId = `category-${data?.idCategory}`;
+      const nodeId = `categoryitems-${data?.idMeal}`;
       return {
-        id: `e-${data?.idCategory}`,
+        id: `e-${data?.idMeal}`,
         target: nodeId,
         source: "explore-parent",
       };

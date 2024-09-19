@@ -42,6 +42,7 @@ const App = () => {
   const [openMealDetailsSidebar, setOpenMealDetailSidebar] =
     useState<boolean>(false);
   const [categoryList, setCategoryList] = useState<any>([]);
+  const [areas, setAreas] = useState<Array<string>>();
 
   const handleNodeClick = useCallback(
     (_event: any, node: any) => {
@@ -115,12 +116,27 @@ const App = () => {
   useEffect(() => {
     if (!categoryList?.length) {
       axios
-        .get("https://www.themealdb.com/api/json/v1/1/categories.php")
+        .get("https://www.themealdb.com/api/json/v1/1/filter.php?a=Indian")
         ?.then((res) => {
-          setCategoryList([...res?.data?.categories]);
+          setCategoryList([...res?.data?.meals]);
         });
     }
   }, [categoryList]);
+
+  const handleSelectCountry = (e: any) => {
+    setCategoryList([]);
+    setNodes([...initialNodes]);
+    setEdges([...initialEdges]);
+    axios
+      ?.get(
+        `https://www.themealdb.com/api/json/v1/1/filter.php?a=${
+          e.target?.value ? e.target?.value : "Indian"
+        }`
+      )
+      ?.then((res) => {
+        setCategoryList([...res?.data?.meals]);
+      });
+  };
 
   return (
     <MealDetailsContext.Provider
@@ -129,6 +145,13 @@ const App = () => {
         setMealDetails: setMealDetails,
       }}
     >
+      <select onChange={handleSelectCountry}>
+        <option>Indian</option>
+        <option>Canadian</option>
+        <option>Italian</option>
+        <option>Japanese</option>
+        <option>Chinese</option>
+      </select>
       <div className="w-full h-[100vh]">
         <MealsDetailsSideBar
           openMealDetailsSidebar={openMealDetailsSidebar}
