@@ -114,24 +114,23 @@ const App = () => {
   );
 
   useEffect(() => {
-    if (!categoryList?.length) {
+    if (!categoryList?.length && !areas) {
       axios
         .get("https://www.themealdb.com/api/json/v1/1/filter.php?a=Indian")
         ?.then((res) => {
           setCategoryList([...res?.data?.meals]);
         });
     }
-  }, [categoryList]);
+  }, [categoryList, areas]);
 
   const handleSelectCountry = (e: any) => {
     setCategoryList([]);
     setNodes([...initialNodes]);
     setEdges([...initialEdges]);
+    setAreas(e?.target?.value);
     axios
       ?.get(
-        `https://www.themealdb.com/api/json/v1/1/filter.php?a=${
-          e.target?.value ? e.target?.value : "Indian"
-        }`
+        `https://www.themealdb.com/api/json/v1/1/filter.php?a=${e?.target?.value}`
       )
       ?.then((res) => {
         setCategoryList([...res?.data?.meals]);
